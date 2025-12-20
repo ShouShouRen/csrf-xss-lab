@@ -1,0 +1,35 @@
+version: "3.8"
+
+services:
+  backend:
+    build:
+      context: ./nest-app
+      dockerfile: Dockerfile
+    volumes:
+      - ./nest-app:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+      - SECRET_KEY=secretKey
+
+  frontend:
+    build:
+      context: ./react-app
+      dockerfile: Dockerfile
+    volumes:
+      - ./react-app:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+  phishing-site:
+    build:
+      context: ./phishing-site
+      dockerfile: Dockerfile
+    volumes:
+      - ./phishing-site:/usr/share/nginx/html
+    ports:
+      - "8080:80"

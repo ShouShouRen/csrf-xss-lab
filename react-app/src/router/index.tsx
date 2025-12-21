@@ -1,5 +1,6 @@
 import Dashboard from "../pages/Dashboard";
 import Login from "../pages/Login";
+import SearchResults from "../pages/SearchResults";
 import Vulnerable from "../pages/Vulnerable";
 import ProtectedRoute from "../components/ProtectedRoute";
 
@@ -17,6 +18,14 @@ const routes = [
     element: (
       <ProtectedRoute>
         <Dashboard />
+      </ProtectedRoute>
+    ),
+  },
+  {
+    path: "/search",
+    element: (
+      <ProtectedRoute>
+        <SearchResults />
       </ProtectedRoute>
     ),
   },

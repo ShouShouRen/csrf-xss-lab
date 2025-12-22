@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { isTokenValid } from "../utils/token";
 
 interface UserProfile {
   userId: number;
@@ -16,6 +17,14 @@ export default function Dashboard() {
   const [searchQuery, setSearchQuery] = useState("");
   useEffect(() => {
     const loadProfile = async () => {
+      // 檢查 token 是否存在且有效
+      if (!token || !isTokenValid(token)) {
+        console.warn("Token is missing or expired");
+        localStorage.removeItem("access_token");
+        navigate("/login");
+        return;
+      }
+
       try {
         const response = await axios.get("http://localhost:3000/profile", {
           headers: {
@@ -25,13 +34,12 @@ export default function Dashboard() {
         setProfile(response.data);
       } catch (error) {
         console.error("Failed to load profile:", error);
+        // 如果 API 請求失敗，可能是 token 已過期，清除並導向登入頁
+        localStorage.removeItem("access_token");
+        navigate("/login");
       }
     };
-    if (!token) {
-      navigate("/login");
-    } else {
-      loadProfile();
-    }
+    loadProfile();
   }, [token, navigate]);
 
   const handleLogout = () => {

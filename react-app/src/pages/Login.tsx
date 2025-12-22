@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { isTokenValid } from "../utils/token";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -14,8 +15,12 @@ const Login = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("access_token");
-    if (token) {
+    // 只有在 token 存在且有效時才導向 dashboard
+    if (token && isTokenValid(token)) {
       navigate("/dashboard");
+    } else if (token && !isTokenValid(token)) {
+      // 如果 token 已過期，清除它
+      localStorage.removeItem("access_token");
     }
   }, [navigate]);
 
@@ -43,8 +48,17 @@ const Login = () => {
         password,
       });
 
-      localStorage.setItem("access_token", response.data.access_token);
-      navigate("/dashboard");
+      const newToken = response.data.access_token;
+      
+      // 驗證新取得的 token 是否有效
+      if (newToken && isTokenValid(newToken)) {
+        localStorage.setItem("access_token", newToken);
+        navigate("/dashboard");
+      } else {
+        // 如果 token 無效，顯示錯誤
+        setError("登入失敗，請重試");
+        console.error("Invalid token received from server");
+      }
     } catch (err) {
       console.error("Login error:", err);
       setError("帳號或密碼錯誤");

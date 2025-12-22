@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { isTokenValid } from "../utils/token";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -16,6 +17,15 @@ export default function ProtectedRoute({ children }: ProtectedRouteProps) {
 
       if (!token) {
         console.warn("No token found in localStorage");
+        setIsValid(false);
+        navigate("/login");
+        return;
+      }
+
+      // 先檢查 token 是否過期
+      if (!isTokenValid(token)) {
+        console.warn("Token has expired");
+        localStorage.removeItem("access_token");
         setIsValid(false);
         navigate("/login");
         return;

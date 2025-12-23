@@ -13,6 +13,10 @@ services:
     environment:
       - PORT=3000
       - SECRET_KEY=secretKey
+      - NODE_ENV=development
+      # 如果使用 HTTPS，可以設置為 production 或啟用 FORCE_SECURE_COOKIE
+      # - NODE_ENV=production
+      # - FORCE_SECURE_COOKIE=true
 
   frontend:
     build:
@@ -25,6 +29,19 @@ services:
       - "5173:5173"
     depends_on:
       - backend
+
+  secure-frontend:
+    build:
+      context: ./secure-react-app
+      dockerfile: Dockerfile
+    volumes:
+      - ./secure-react-app:/app
+      - /app/node_modules
+    ports:
+      - "5174:5174"
+    depends_on:
+      - backend
+
   phishing-site:
     build:
       context: ./phishing-site

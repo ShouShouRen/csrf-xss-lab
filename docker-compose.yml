@@ -50,3 +50,12 @@ services:
       - ./phishing-site:/usr/share/nginx/html
     ports:
       - "8080:80"
+
+  csrf-attack-demo:
+    build:
+      context: ./csrf-attack-demo
+      dockerfile: Dockerfile
+    volumes:
+      - ./csrf-attack-demo:/usr/share/nginx/html
+    ports:
+      - "8081:80"

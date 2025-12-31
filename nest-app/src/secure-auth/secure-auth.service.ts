@@ -65,4 +65,23 @@ export class SecureAuthService {
       .digest('hex')
       .substring(0, 16);
   }
+
+  // 生成匿名 session ID（用於登入前的 CSRF 保護）
+  generateAnonymousSessionId(): string {
+    return crypto.randomBytes(16).toString('hex');
+  }
+
+  // 驗證並消費匿名 CSRF Token（驗證後刪除，防止重放攻擊）
+  validateAndConsumeAnonymousCsrfToken(
+    anonymousSessionId: string,
+    csrfToken: string,
+  ): boolean {
+    const storedToken = csrfTokenStore.get(anonymousSessionId);
+    if (storedToken === csrfToken) {
+      // 驗證成功後刪除匿名 token，防止重放攻擊
+      csrfTokenStore.delete(anonymousSessionId);
+      return true;
+    }
+    return false;
+  }
 }

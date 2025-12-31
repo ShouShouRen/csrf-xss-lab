@@ -26,11 +26,12 @@ export const clearCsrfToken = () => {
 // 請求攔截器：自動添加 X-CSRF-Token Header
 api.interceptors.request.use(
   (config) => {
-    // 對於需要 CSRF 保護的請求（非登入、非 CSRF Token 獲取）
+    // 對於需要 CSRF 保護的請求（包括登入！）
+    // 只排除獲取 CSRF Token 的端點
     if (
       csrfToken &&
-      config.url !== "/secure-auth/login" &&
-      config.url !== "/secure-auth/csrf-token"
+      config.url !== "/secure-auth/csrf-token" &&
+      config.url !== "/secure-auth/anonymous-csrf-token"
     ) {
       config.headers["X-CSRF-Token"] = csrfToken;
     }
@@ -60,6 +61,15 @@ api.interceptors.response.use(
 
 // API 方法
 export const authApi = {
+  // 獲取匿名 CSRF Token（用於登入前）
+  getAnonymousCsrfToken: async () => {
+    const response = await api.get("/secure-auth/anonymous-csrf-token");
+    if (response.data.csrfToken) {
+      setCsrfToken(response.data.csrfToken);
+    }
+    return response.data;
+  },
+
   login: async (username: string, password: string) => {
     const response = await api.post("/secure-auth/login", {
       username,
@@ -111,3 +121,4 @@ export const authApi = {
 };
 
 export default api;
+

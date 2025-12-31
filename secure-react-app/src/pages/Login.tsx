@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { authApi } from "../api";
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -10,6 +11,7 @@ const Login = () => {
   const [error, setError] = useState("");
   const [usernameError, setUsernameError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [csrfReady, setCsrfReady] = useState(false);
   const navigate = useNavigate();
   const { login, isAuthenticated, isLoading } = useAuth();
 
@@ -17,6 +19,19 @@ const Login = () => {
     // 如果已經登入，導向 dashboard
     if (!isLoading && isAuthenticated) {
       navigate("/dashboard");
+    } else if (!isLoading && !isAuthenticated) {
+      // 未登入時，獲取匿名 CSRF Token
+      const fetchAnonymousCsrfToken = async () => {
+        try {
+          await authApi.getAnonymousCsrfToken();
+          setCsrfReady(true);
+          console.log("✅ 匿名 CSRF Token 已獲取");
+        } catch (error) {
+          console.error("獲取匿名 CSRF Token 失敗:", error);
+          setError("無法初始化登入頁面，請重新整理頁面");
+        }
+      };
+      fetchAnonymousCsrfToken();
     }
   }, [isAuthenticated, isLoading, navigate]);
 
@@ -282,10 +297,14 @@ const Login = () => {
                 {/* Login Button */}
                 <button
                   type="submit"
-                  disabled={loading}
+                  disabled={loading || !csrfReady}
                   className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg transition-colors disabled:bg-blue-300 disabled:cursor-not-allowed"
                 >
-                  {loading ? "登入中..." : "安全登入"}
+                  {!csrfReady
+                    ? "正在初始化..."
+                    : loading
+                    ? "登入中..."
+                    : "安全登入"}
                 </button>
 
                 {/* 測試帳號提示 */}

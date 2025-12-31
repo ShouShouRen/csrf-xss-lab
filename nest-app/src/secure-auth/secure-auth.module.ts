@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { SecureAuthController } from './secure-auth.controller';
 import { SecureAuthService } from './secure-auth.service';
+import { CsrfGuard } from './csrf.guard';
 
 @Module({
   imports: [
@@ -11,7 +12,7 @@ import { SecureAuthService } from './secure-auth.service';
     }),
   ],
   controllers: [SecureAuthController],
-  providers: [SecureAuthService],
+  providers: [SecureAuthService, CsrfGuard],
   exports: [SecureAuthService],
 })
 export class SecureAuthModule {}
